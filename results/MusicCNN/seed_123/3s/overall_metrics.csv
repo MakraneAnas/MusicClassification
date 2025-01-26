@@ -1,0 +1,5 @@
+Metric,Value
+Slice Loss,1.0621948528289795
+Slice Accuracy,0.712
+Song Accuracy,0.77
+Training Time (seconds),2978.6935131549835

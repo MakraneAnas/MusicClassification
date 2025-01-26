@@ -1,0 +1,6 @@
+*.npy
+*.wav
+*.pth
+*.ipynb
+/notebooks
+/.idea

@@ -1,0 +1,15 @@
+Run Configuration
+==================
+
+Models: CNN, CRNN
+Number of Epochs: 200
+Learning Rate: 0.001
+Batch Size: 16
+Slice Lengths: [1, 3, 5, 10, 20, 30]
+Seeds: [333, 123, 223]
+Device: cuda
+CUDA Available: True
+CUDA Device: NVIDIA GeForce RTX 4050 Laptop GPU
+CPU Info: AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD
+OS: Windows 10
+Python Version: 3.10.15
