@@ -2,29 +2,31 @@ import torch
 from src.trainer import train_and_evaluate
 from src.models import MusicCNN, MusicCRNN2D, MusicCRNN1D, MusicRNN
 from src.utility import save_run_info
+import config
 
 if __name__ == "__main__":
-    if torch.cuda.is_available():
+    if torch.cuda.is_available() and config.DEVICE == "cuda":
         print(f"Using CUDA device: {torch.cuda.get_device_name()}")
+        DEVICE = torch.device("cuda")
     else:
-        print("CUDA not available, using CPU")
-    # Configuration
-    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    DATA_DIR = "data/song_data"
-    GENRES = None  # Automatically detect genres in the data directory
-    SLICE_LENGTHS = [1, 3, 5, 10]  # Slice lengths in seconds
-    HMM = [10]
-    SEEDS = [333, 123, 223]  # Seeds for multiple runs and reproducibility
-    NUM_CLASSES = 10
-    EPOCHS = 300
-    EARLY_STOP_PATIENCE = 10
-    BATCH_SIZE = 16
-    OVERLAP = 0.5
-    LEARNING_RATE = 0.001
-    RESULTS_DIR = "./results_2.0"
-    WEIGHTS_CHECKPOINT = False
+        print("CUDA not available or not requested, using CPU")
+        DEVICE = torch.device("cpu")
 
-    """    save_run_info(
+    # Configuration
+    DATA_DIR = config.DATA_DIR
+    GENRES = config.GENRES
+    SLICE_LENGTHS = config.SLICE_LENGTHS
+    SEEDS = config.SEEDS
+    NUM_CLASSES = config.NUM_CLASSES
+    EPOCHS = config.EPOCHS
+    EARLY_STOP_PATIENCE = config.EARLY_STOP_PATIENCE
+    BATCH_SIZE = config.BATCH_SIZE
+    OVERLAP = config.OVERLAP
+    LEARNING_RATE = config.LEARNING_RATE
+    RESULTS_DIR = config.RESULTS_DIR
+    WEIGHTS_CHECKPOINT = config.WEIGHTS_CHECKPOINT
+
+    save_run_info(
         models=["CNN", "CRNN2D", "CRNN1D", "RNN"],
         epochs=EPOCHS,
         learning_rate=LEARNING_RATE,
@@ -35,10 +37,10 @@ if __name__ == "__main__":
         seeds=SEEDS,
         device=DEVICE,
         results_dir=RESULTS_DIR,
-    )"""
+    )
 
     # Train CNN
-    """    train_and_evaluate(model_class=MusicCNN, model_name="MusicCNN", data_dir=DATA_DIR, genres=GENRES,
+    train_and_evaluate(model_class=MusicCNN, model_name="MusicCNN", data_dir=DATA_DIR, genres=GENRES,
                        slice_lengths=SLICE_LENGTHS, seeds=SEEDS, num_classes=NUM_CLASSES, device=DEVICE, epochs=EPOCHS,
                        batch_size=BATCH_SIZE, learning_rate=LEARNING_RATE, early_stopping_patience=EARLY_STOP_PATIENCE,
                        results_dir=RESULTS_DIR, save_weights=WEIGHTS_CHECKPOINT)
@@ -47,11 +49,11 @@ if __name__ == "__main__":
     train_and_evaluate(model_class=MusicCRNN2D, model_name="MusicCRNN2D", data_dir=DATA_DIR, genres=GENRES,
                        slice_lengths=SLICE_LENGTHS, seeds=SEEDS, num_classes=NUM_CLASSES, device=DEVICE, epochs=EPOCHS,
                        batch_size=BATCH_SIZE, learning_rate=LEARNING_RATE, results_dir=RESULTS_DIR,
-                       save_weights=WEIGHTS_CHECKPOINT)"""
+                       save_weights=WEIGHTS_CHECKPOINT)
 
     # Train CRNN1D
     train_and_evaluate(model_class=MusicCRNN1D, model_name="MusicCRNN1D", data_dir=DATA_DIR, genres=GENRES,
-                       slice_lengths=HMM, seeds=SEEDS, num_classes=NUM_CLASSES, device=DEVICE, epochs=EPOCHS,
+                       slice_lengths=SLICE_LENGTHS, seeds=SEEDS, num_classes=NUM_CLASSES, device=DEVICE, epochs=EPOCHS,
                        batch_size=BATCH_SIZE, learning_rate=LEARNING_RATE, early_stopping_patience=EARLY_STOP_PATIENCE,
                        results_dir=RESULTS_DIR, save_weights=WEIGHTS_CHECKPOINT)
 
