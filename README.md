@@ -123,7 +123,7 @@ Classification performance was evaluated using the test F1-score across three in
 | RNN        | Best | **0.778231** | 0.709431 | 0.605512 | 0.483631 |
 
 
-**Model Performance Metrics by Audio Slice Length**:
+**Model Performance Metrics by Audio Slice Length (early-stopping affects the number of trainning epochs)**:
 
 
 | Model | Split Size | Slice Accuracy | Song Accuracy | Execution Time | Epoch |
