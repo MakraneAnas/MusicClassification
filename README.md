@@ -41,7 +41,7 @@ The main characteristics of the dataset can be summarized as:
 
 The figure below visualizes three seconds of the mel-scaled audio spectrogram for a randomly sampled song from each genre, the primary data representation used in training.
 
-![assets/output.png](img%2Foutput.png)
+![assets/output.png](assets/output.png)
 
 ## Preparing the Dataset
 Once downloaded, extract the dataset and locate the audio files in:
