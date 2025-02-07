@@ -1,6 +1,6 @@
-*.npy
-*.wav
-*.pth
-*.ipynb
-/notebooks
-/.idea
+projet/data
+projet/experimentation/chromagrams
+projet/experimentation/mel_spectrograms
+projet/experimentation/mel_spectrograms_log_scaled
+projet/normalized_spectrograms
+projet/GTZAN_Dataset
