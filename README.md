@@ -1,6 +1,9 @@
 # 🎵 Music Classification Using Deep Learning 🎵
 This repository contains a deep learning pipeline for music genre classification using spectrogram-based models, including CNNs and CRNNs. The models are trained on mel spectrograms generated from audio files.
 
+
+> Check `numerical_models ` branch for baseline models.
+
 ## Dependencies
 
 The experiment code is writen in Python 3.10.15 and built on a number of Python packages including (but not limited to):
